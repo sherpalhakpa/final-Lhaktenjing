@@ -1,6 +1,7 @@
 var express = require('express');       // imports the express library
 var router = express.Router();          // Router object for routes
 
+var categoriesModel = require('../models/categories');
 var filmsModel = require('../models/films');
 
 router.get('/api', function HomePageHandler(request, response) {
@@ -9,14 +10,14 @@ router.get('/api', function HomePageHandler(request, response) {
 });
 
 router.get('/films', function FilmsGetHandler(request, response){
-	filmsModel.getAll(function DoneGettingAll(err, result, fields){
+	filmsModel.getAll(function DoneGettingAll(err, results, fields){
 		if (err) {
             console.log("Some error selecting all");
             console.log(err);
             response.write("Error Getting All");
         } else {
             console.log("Successfully retrieve all records (100)");
-            response.json(result);
+            response.json(results);
         }
 	});
 });
@@ -85,6 +86,17 @@ router.delete('/films', function FilmsDeleteHandler(request, response){
 		});
 });
 
-//router.get('/films-categories', function FilmsCategoriesGetHandler(request, response){});
+router.get('/films-categories', function FilmsCategoriesGetHandler(request, response){
+	filmsModel.getFilmsCategories(function DoneGettingAllFC(err, results, fields){
+		if (err) {
+            console.log("Some error selecting all");
+            console.log(err);
+            response.write("Error Getting All");
+        } else {
+            console.log("Successfully retrieve all films and their categories (100)");
+            response.json(results);
+        }
+	});
+});
 
 module.exports = router;

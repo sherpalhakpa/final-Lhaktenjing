@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="author" content="Lhakpa Sherpa from Getbootstrap.com">
+	    <title>Insert New Category</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+	    <div class="container">
+			<h1>Add New Category</h1>
+	        <form action="api/category" method="POST">
+				<div class="form-group">
+	                <label for="categoryName">Category Name:</label>
+	                <input type="text" class="form-control" id="categoryName" name="categoryName">
+                  <input type="submit" value="Submit" onclick ="InsertCategory()">
+	            </div>
+	        </form>
+	    </div>
+      <script type="text/javascript">
+        function InsertCategory(){
+        	var xhttp = new XMLHttpRequest();
+        	xhttp.onreadystatechange = function ReceivedCallback() {
+        		if (this.readyState == 4 && this.status == 200) {
+        		}
+        	};
+        	xhttp.open("POST", "http://leia.cs.spu.edu:3034/api/categories" , true);
+        	xhttp.send();
+        }
+
+      </script>
+	</body>
+  </html>

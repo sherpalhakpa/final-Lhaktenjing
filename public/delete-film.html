@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="author" content="Lhakpa Sherpa">
+	    <title>Delete Film</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+    <form >
+	    <div class="container">
+			<label for="filmId">Film ID:</label>
+      <input type="text" name="filmId" id="filmId" >
+       <input type="submit" value="Submit" onclick="DeleteFilm()">
+	    </div>
+      </form>
+      <script type="text/javascript">
+        function DeleteFilm(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function ReceivedCallback() {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+          };
+          var id = document.getElementById("filmId").value;
+          xhttp.open("DELETE", "http://leia.cs.spu.edu:3034/api/films/", true);
+          xhttp.send();
+        }
+      </script>
+	</body>
+  </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="author" content="Lhakpa Sherpa">
+	    <title>Show Category</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+    <form" >
+	    <div class="container">
+			     <label for="idInput">Enter ID:</label>
+           <input type="text" name="idInput" id="idInput" value= "1" >
+           <input type="submit" value="Submit" onclick ="categoryByID()">
+	    </div>
+      </form>
+      <div id="categoryWithID" name="categoryWithID">
+
+      </div>
+
+      <script type="text/javascript">
+              function categoryByID(){
+              	var xhttp = new XMLHttpRequest();
+              	xhttp.onreadystatechange = function ReceivedCallback() {
+              		if (this.readyState == 4 && this.status == 200) {
+                      document.getElementById("categoryWithID").innerHTML = CreateTableOfCategory(JSON.parse(this.responseText));
+
+              		}
+              	};
+              	var id = document.getElementById("idInput").value;
+              	xhttp.open("GET", "http://leia.cs.spu.edu:3034/api/categories/" + id, true);
+              	xhttp.send();
+              }
+
+              function CreateTableOfCategory(category){
+              	var retVal = "";
+              	retVal += '<table class = "table table-dark"><thead>' +
+              	'<tr> ' +
+              	'<th scope = "col">Category id</th> '+
+              	'<th scope = "col">Category Name</th> ' +
+              	'</tr></thead><tbody> ';
+              for (var index in category){
+              	retVal += '<tr>' +
+              		`<td>${category[index].category_id} </td>` +
+              		`<td>${category[index].name} </td>` +
+              		'</tr>'
+              	}
+              	retVal +='</tbody></table></body></html>';
+              	return retVal;
+              }
+            </script>
+	</body>
+  </html>

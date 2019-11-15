@@ -2,16 +2,17 @@ var express = require('express');       // imports the express library
 var router = express.Router();          // Router object for routes
 
 var categoriesModel = require('../models/categories');
+var filmsModel = require('../models/films');
 
 router.get('/categories', function CategoriesGetHandler(request, response){
-  categoriesModel.getAll(function DoneGettingAll(err, result, fields){
+  categoriesModel.getAll(function DoneGettingAll(err, results, fields){
     if (err) {
             console.log("Some error selecting all");
             console.log(err);
             response.write("Error Getting All");
         } else {
             console.log("Successfully retrieve all records (100)");
-            response.json(result);
+            response.json(results);
         }
   });
 });
